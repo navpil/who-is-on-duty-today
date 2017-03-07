@@ -15,7 +15,7 @@ public class DutyParametersTest {
     @Test
     public void testTrueBooleans() throws Exception {
         DutyParameters params = new DutyParameters();
-        new JCommander(params, new String[]{"-t", "-r"});
+        new JCommander(params, new String[]{"-r"});
         assertTrue(params.isTestRun());
         assertTrue(params.isRevert());
     }
@@ -23,7 +23,7 @@ public class DutyParametersTest {
     @Test
     public void testFalseBooleans() throws Exception {
         DutyParameters params = new DutyParameters();
-        new JCommander(params, new String[]{});
+        new JCommander(params, new String[]{"-f"});
         assertFalse(params.isTestRun());
         assertFalse(params.isRevert());
     }
@@ -31,7 +31,7 @@ public class DutyParametersTest {
     @Test
     public void getEffectiveAliases() throws Exception {
         DutyParameters params = new DutyParameters();
-        new JCommander(params, new String[]{"-t", "-a", "AAA", "bbb", "ccc", "DDD", "--exclude", "BBB", "ddd"});
+        new JCommander(params, new String[]{"-a", "AAA", "bbb", "ccc", "DDD", "--exclude", "BBB", "ddd"});
         HashSet<String> allAliases = new HashSet<>(Arrays.asList("AAA", "CCC"));
 
         assertEquals(allAliases, params.getEffectiveAliases());
@@ -40,7 +40,7 @@ public class DutyParametersTest {
     @Test
     public void getEffectiveAliasesDoesNotFailOnEmptyExclusions() throws Exception {
         DutyParameters params = new DutyParameters();
-        new JCommander(params, new String[]{"-t", "-a", "aaa", "bbb", "ccc"});
+        new JCommander(params, new String[]{"-a", "aaa", "bbb", "ccc"});
         HashSet<String> allAliases = new HashSet<>(Arrays.asList("AAA", "BBB", "CCC"));
         assertEquals(allAliases, params.getEffectiveAliases());
     }

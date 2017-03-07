@@ -36,7 +36,9 @@ public class WhoIsOnDutyToday {
                 showUsage();
                 return;
             }
-            backupFile(queueFile);
+            if (!params.isTestRun()) {
+                backupFile(queueFile);
+            }
             DutyFinderImpl dutyFinder = new DutyFinderImpl(params.isTestRun() ? new ReadonlyFileUserDao(queueFile) : new FileUserDao(queueFile));
             System.out.println(dutyFinder.whoIsOnDutyToday(params.getEffectiveAliases()));
         }

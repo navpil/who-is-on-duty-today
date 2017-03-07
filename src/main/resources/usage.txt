@@ -2,8 +2,8 @@ Usage:
 
 -a, --alias
         Required aliases of users who will eat today
--t, --test-run
-        this will be a test run, no changes will be done
+-f, --force
+        this will force a change - the current person on duty will be remembered and queue will be changed
 -e, --exclude
         aliases to exclude from calculation
 -q, --queue

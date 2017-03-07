@@ -17,14 +17,14 @@ public class DutyParameters {
     @Parameter(names = {"-a", "--alias"}, variableArity = true)
     private Set<String> aliases = new HashSet<>();
 
-    @Parameter(names = {"-t", "--test-run"})
-    private boolean testRun;
+    @Parameter(names = {"-f", "--force"})
+    private boolean force;
 
     @Parameter(names = {"-x", "--exclude"}, variableArity = true)
     private Set<String> exclusions = new HashSet<>();
 
     public boolean isTestRun() {
-        return testRun;
+        return !force;
     }
 
     public boolean isRevert() {
