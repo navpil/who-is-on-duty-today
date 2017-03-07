@@ -1,0 +1,12 @@
+Usage:
+
+-a, --alias
+        Required aliases of users who will eat today
+-t, --test-run
+        this will be a test run, no changes will be done
+-e, --exclude
+        aliases to exclude from calculation
+-q, --queue
+        queue file name to use
+-r, --revert
+        revert the queue file
