@@ -21,7 +21,7 @@ public class User {
     public static User parseString(String s) {
         String[] split = s.split(" ");
 
-        String alias = split[0];
+        String alias = split[0].toUpperCase();
         int wasOnDuty = split.length > 1 ? Integer.parseInt(split[1]) : 0;
         int eatTimes = split.length > 2 ? Integer.parseInt(split[2]) : 0;
         int problems = split.length > 3 ? Integer.parseInt(split[3]) : 0;

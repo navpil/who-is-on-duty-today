@@ -4,6 +4,7 @@ import com.beust.jcommander.Parameter;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class DutyParameters {
 
@@ -31,9 +32,13 @@ public class DutyParameters {
     }
 
     public Set<String> getEffectiveAliases() {
-        HashSet<String> effectiveAliases = new HashSet<>(aliases);
-        effectiveAliases.removeAll(exclusions);
+        HashSet<String> effectiveAliases = new HashSet<>(toUpperCase(aliases));
+        effectiveAliases.removeAll(toUpperCase(exclusions));
         return effectiveAliases;
+    }
+
+    private Set<String> toUpperCase(Set<String> aliases) {
+        return aliases.stream().map(String::toUpperCase).collect(Collectors.toSet());
     }
 
     public String getQueueFile() {

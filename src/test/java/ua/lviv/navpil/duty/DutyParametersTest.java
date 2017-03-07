@@ -31,8 +31,8 @@ public class DutyParametersTest {
     @Test
     public void getEffectiveAliases() throws Exception {
         DutyParameters params = new DutyParameters();
-        new JCommander(params, new String[]{"-t", "-a", "aaa", "bbb", "ccc", "--exclude", "bbb"});
-        HashSet<String> allAliases = new HashSet<>(Arrays.asList("aaa", "ccc"));
+        new JCommander(params, new String[]{"-t", "-a", "AAA", "bbb", "ccc", "DDD", "--exclude", "BBB", "ddd"});
+        HashSet<String> allAliases = new HashSet<>(Arrays.asList("AAA", "CCC"));
 
         assertEquals(allAliases, params.getEffectiveAliases());
     }
@@ -41,7 +41,7 @@ public class DutyParametersTest {
     public void getEffectiveAliasesDoesNotFailOnEmptyExclusions() throws Exception {
         DutyParameters params = new DutyParameters();
         new JCommander(params, new String[]{"-t", "-a", "aaa", "bbb", "ccc"});
-        HashSet<String> allAliases = new HashSet<>(Arrays.asList("aaa", "bbb", "ccc"));
+        HashSet<String> allAliases = new HashSet<>(Arrays.asList("AAA", "BBB", "CCC"));
         assertEquals(allAliases, params.getEffectiveAliases());
     }
 
@@ -58,5 +58,5 @@ public class DutyParametersTest {
         new JCommander(params, new String[]{});
         assertEquals("duty-q.txt", params.getQueueFile());
     }
-    
+
 }
