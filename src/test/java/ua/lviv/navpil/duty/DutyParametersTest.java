@@ -46,6 +46,22 @@ public class DutyParametersTest {
     }
 
     @Test
+    public void getNiceAliases() throws Exception {
+        DutyParameters params = new DutyParameters();
+        new JCommander(params, new String[]{"-n", "-a", "aaabbb", "cccDDD", "   sdfadfffe"});
+        HashSet<String> allAliases = new HashSet<>(Arrays.asList("AAA", "BBB", "CCC", "DDD", "SDF", "ADF", "FFE"));
+        assertEquals(allAliases, params.getEffectiveAliases());
+    }
+
+    @Test
+    public void getNotNiceAliases() throws Exception {
+        DutyParameters params = new DutyParameters();
+        new JCommander(params, new String[]{"-a", "aaabbb", "cccDDD", "   sdfadfffe"});
+        HashSet<String> allAliases = new HashSet<>(Arrays.asList("AAABBB", "CCCDDD", "SDFADFFFE"));
+        assertEquals(allAliases, params.getEffectiveAliases());
+    }
+
+    @Test
     public void readDutyQ() {
         DutyParameters params = new DutyParameters();
         new JCommander(params, new String[]{"-q", "test-q.txt"});

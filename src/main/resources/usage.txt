@@ -10,3 +10,5 @@ Usage:
         queue file name to use
 -r, --revert
         revert the queue file
+-n, --nice
+        parses aliases nicely, three per alias even if they happen to kludge together (what happens if copypasted from google doc)
