@@ -57,18 +57,13 @@ public class User {
 
         User user = (User) o;
 
-        if (wasOnDuty != user.wasOnDuty) return false;
-        if (eatTimes != user.eatTimes) return false;
         return alias != null ? alias.equals(user.alias) : user.alias == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = alias != null ? alias.hashCode() : 0;
-        result = 31 * result + wasOnDuty;
-        result = 31 * result + eatTimes;
-        return result;
+        return alias != null ? alias.hashCode() : 0;
     }
 
     public User onDuty() {

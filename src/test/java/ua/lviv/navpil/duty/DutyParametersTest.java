@@ -75,4 +75,18 @@ public class DutyParametersTest {
         assertEquals("duty-q.txt", params.getQueueFile());
     }
 
+    @Test
+    public void readVolunteer() {
+        DutyParameters params = new DutyParameters();
+        new JCommander(params, new String[]{"--volunteer", "kho"});
+        assertEquals("KHO", params.getVolunteer());
+    }
+
+    @Test
+    public void readNoVolunteer() {
+        DutyParameters params = new DutyParameters();
+        new JCommander(params, new String[]{});
+        assertEquals(null, params.getVolunteer());
+    }
+
 }

@@ -1,4 +1,6 @@
-package ua.lviv.navpil.duty;
+package ua.lviv.navpil.duty.dao;
+
+import ua.lviv.navpil.duty.User;
 
 import java.util.List;
 

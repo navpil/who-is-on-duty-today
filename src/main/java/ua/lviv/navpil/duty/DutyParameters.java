@@ -28,6 +28,9 @@ public class DutyParameters {
     @Parameter(names = {"-x", "--exclude"}, variableArity = true)
     private Set<String> exclusions = new HashSet<>();
 
+    @Parameter(names = {"--volunteer"})
+    private String  volunteer;
+
     public boolean isTestRun() {
         return !force;
     }
@@ -58,5 +61,9 @@ public class DutyParameters {
 
     public String getQueueFile() {
         return queueFile;
+    }
+
+    public String getVolunteer() {
+        return volunteer == null ? null : volunteer.toUpperCase();
     }
 }

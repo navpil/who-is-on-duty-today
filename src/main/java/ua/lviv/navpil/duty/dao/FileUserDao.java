@@ -1,4 +1,6 @@
-package ua.lviv.navpil.duty;
+package ua.lviv.navpil.duty.dao;
+
+import ua.lviv.navpil.duty.User;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -39,7 +41,6 @@ public class FileUserDao implements UserDao {
             for (User user : users) {
                 w.write(user.asString() + "\n");
             }
-            w.close();
         } catch (IOException e) {
             LOG.log(Level.SEVERE, "Can't write to file");
         }

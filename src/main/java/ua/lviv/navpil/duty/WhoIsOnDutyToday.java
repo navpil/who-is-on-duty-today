@@ -1,6 +1,12 @@
 package ua.lviv.navpil.duty;
 
 import com.beust.jcommander.JCommander;
+import ua.lviv.navpil.duty.dao.FileUserDao;
+import ua.lviv.navpil.duty.dao.ReadonlyFileUserDao;
+import ua.lviv.navpil.duty.dao.UserDao;
+import ua.lviv.navpil.duty.strategy.DutyStrategy;
+import ua.lviv.navpil.duty.strategy.QueueDutyStrategy;
+import ua.lviv.navpil.duty.strategy.VolunteerDutyStrategy;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -39,7 +45,10 @@ public class WhoIsOnDutyToday {
             if (!params.isTestRun()) {
                 backupFile(queueFile);
             }
-            DutyFinderImpl dutyFinder = new DutyFinderImpl(params.isTestRun() ? new ReadonlyFileUserDao(queueFile) : new FileUserDao(queueFile));
+            UserDao userDao = params.isTestRun() ? new ReadonlyFileUserDao(queueFile) : new FileUserDao(queueFile);
+            DutyStrategy dutyStrategy = params.getVolunteer() == null ? new QueueDutyStrategy() : new VolunteerDutyStrategy(params.getVolunteer());
+
+            DutyFinder dutyFinder = new DutyFinderImpl(userDao, dutyStrategy);
             System.out.println(dutyFinder.whoIsOnDutyToday(params.getEffectiveAliases()));
         }
     }

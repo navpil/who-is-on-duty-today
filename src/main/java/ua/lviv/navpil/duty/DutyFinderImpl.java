@@ -1,5 +1,8 @@
 package ua.lviv.navpil.duty;
 
+import ua.lviv.navpil.duty.dao.UserDao;
+import ua.lviv.navpil.duty.strategy.DutyStrategy;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -8,9 +11,11 @@ import java.util.Set;
 public class DutyFinderImpl implements DutyFinder {
 
     private final UserDao userDao;
+    private final DutyStrategy dutyStrategy;
 
-    public DutyFinderImpl(UserDao userDao) {
+    public DutyFinderImpl(UserDao userDao, DutyStrategy dutyStrategy) {
         this.userDao = userDao;
+        this.dutyStrategy = dutyStrategy;
     }
 
     public String whoIsOnDutyToday(Set<String> allAliases) {
@@ -27,12 +32,7 @@ public class DutyFinderImpl implements DutyFinder {
             }
         }
 
-        User onDuty;
-        if (existingUsers.isEmpty()) {
-            onDuty = User.newcomer(allAliases.iterator().next());
-        } else {
-            onDuty = existingUsers.get(0);
-        }
+        User onDuty = dutyStrategy.getOnDutyUser(newComers, existingUsers, allUsers);
 
         for (String alias : newComers) {
             allUsers.add(User.newcomer(alias));
