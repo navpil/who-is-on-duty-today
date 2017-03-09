@@ -3,7 +3,6 @@ package ua.lviv.navpil.duty;
 import com.beust.jcommander.JCommander;
 import org.junit.Test;
 
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -16,7 +15,7 @@ public class DutyParametersTest {
     public void testTrueBooleans() throws Exception {
         DutyParameters params = new DutyParameters();
         new JCommander(params, new String[]{"-r"});
-        assertTrue(params.isTestRun());
+        assertTrue(params.isSoftRun());
         assertTrue(params.isRevert());
     }
 
@@ -24,7 +23,7 @@ public class DutyParametersTest {
     public void testFalseBooleans() throws Exception {
         DutyParameters params = new DutyParameters();
         new JCommander(params, new String[]{"-f"});
-        assertFalse(params.isTestRun());
+        assertFalse(params.isSoftRun());
         assertFalse(params.isRevert());
     }
 

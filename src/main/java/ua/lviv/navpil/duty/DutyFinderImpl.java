@@ -18,15 +18,15 @@ public class DutyFinderImpl implements DutyFinder {
         this.dutyStrategy = dutyStrategy;
     }
 
-    public String whoIsOnDutyToday(Set<String> allAliases) {
+    public String whoIsOnDutyToday(Set<String> effectiveAliases, Set<String> allAliases) {
 
-        HashSet<String> newComers = new HashSet<>(allAliases);
+        HashSet<String> newComers = new HashSet<>(effectiveAliases);
 
         List<User> allUsers = new ArrayList<>(userDao.readUsers());
         List<User> existingUsers = new ArrayList<>();
 
         for (User user : allUsers) {
-            if (allAliases.contains(user.getAlias())) {
+            if (effectiveAliases.contains(user.getAlias())) {
                 newComers.remove(user.getAlias());
                 existingUsers.add(user);
             }
