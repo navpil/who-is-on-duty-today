@@ -55,25 +55,33 @@ In case chosen person cannot be on duty today, you may exclude his alias by usin
 
 ## Examples
 
+Run:
+
     > java -jar who-is-on-duty-today.jar -a aaa bbb ccc ddd GGG fff EEE
     INFO: Who is on duty today?
     INFO: This is a soft run, queue will not be updated. Use --force to update the queue
     INFO: EEE
+    
+Talk:
 
-- EEEE, can you be on duty today?
-- No, sorry, I have a very important meeting from 11:00 till 13:00
-- Ok, nevermind
+ - EEEE, can you be on duty today?
+ - No, sorry, I have a very important meeting from 11:00 till 13:00
+ - Ok, nevermind.
 
+Run:
 
     > java -jar who-is-on-duty-today.jar -a aaa bbb ccc ddd GGG fff EEE --exclude EEE
     INFO: Who is on duty today?
     INFO: This is a soft run, queue will not be updated. Use --force to update the queue
     INFO: ddd
     
-- ddd, can you be on duty today?
-- Yes, sure
-- Perfect, thank you
+Talk:
 
+ - ddd, can you be on duty today?
+ - Yes, sure
+ - Perfect, thank you
+
+Run:
 
     > java -jar who-is-on-duty-today.jar -f -a aaa bbb ccc ddd GGG fff EEE --exclude EEE
     INFO: Who is on duty today?
