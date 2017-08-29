@@ -38,6 +38,7 @@ public class DutyFinderImpl implements DutyFinder {
             allUsers.add(User.newcomer(alias));
         }
 
+        //This is a list, current on duty user is added to the end of a list
         allUsers.remove(onDuty);
         allUsers.add(onDuty.onDuty());
 

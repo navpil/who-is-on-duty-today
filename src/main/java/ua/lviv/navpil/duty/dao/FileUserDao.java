@@ -30,7 +30,7 @@ public class FileUserDao implements UserDao {
                 users.add(User.parseString(line));
             }
         } catch (IOException e) {
-            LOG.log(Level.SEVERE, "Can't read file with users", e);
+            LOG.log(Level.SEVERE, "Queue file with users not found");
             return Collections.emptyList();
         }
         return users;

@@ -12,6 +12,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class DutyFinderImplTest {
 
@@ -45,6 +46,19 @@ public class DutyFinderImplTest {
         assertUserIs("NEWCOMER", 0, 1, users.get(counter++));
         assertUserIs("SECOND", 1, 1, users.get(counter));
 
+    }
+
+    @Test
+    public void queueShouldBeUpdated() {
+        UserDao userDao = createTestUserDao("AAA", "BBB");
+        DutyFinderImpl dutyFinder = new DutyFinderImpl(userDao, new QueueDutyStrategy());
+
+        String prev = dutyFinder.whoIsOnDutyToday(new HashSet<>(Arrays.asList("AAA", "BBB")));
+        for (int i = 0; i < 10; i++) {
+            String current = dutyFinder.whoIsOnDutyToday(new HashSet<>(Arrays.asList("AAA", "BBB")));
+            assertNotEquals(prev, current);
+            prev = current;
+        }
     }
 
     private void assertUserIs(String alias, int onDuty, int ate, User user) {
