@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 public class DutyParameters {
 
-    @Parameter(names = {"-n", "--nice"}, description = "parses aliases nicely, three per alias even if they happen to kludge together (what happens if copypasted from google doc)")
+    @Parameter(names = {"-n", "--nice"}, description = "parses aliases nicely, three letters per alias even if they happen to kludge together (what happens if copypasted from google doc)")
     private boolean nice;
 
     @Parameter(names = {"-q", "--queue"}, description = "queue file name to use")
